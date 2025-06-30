@@ -8,6 +8,7 @@ class Filters:
         REGEX = 0
         STARTSWITH = 1
         EXACT = 2
+        BYTES = 3
 
     _filters = {
         DIR_C2S: [],
@@ -37,4 +38,7 @@ class Filters:
             elif mode == cls.Mode.EXACT:
                 if data == pattern:
                     data = callback(data)
+            elif mode == cls.Mode.BYTES:
+                if pattern in data:
+                    callback(data)
         return data
